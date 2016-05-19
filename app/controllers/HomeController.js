@@ -1,15 +1,11 @@
 'use strict';
 
-var HomeController = function HomeController(stove) {
-  this.stove = stove;
+var HomeController = function HomeController() {
   this.getIndex = this.getIndex.bind(this); 
 };
 
 HomeController.prototype.getIndex = function getIndex(req, res) {
-  res.render('index', {
-    title: 'Control',
-    stove: this.stove
-  });  
+  res.render('index', { title: 'Control' });  
 };
 
 module.exports = HomeController;

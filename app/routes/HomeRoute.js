@@ -3,9 +3,9 @@
 var express = require('express');
 var HomeController = require('../controllers/HomeController');
 
-var HomeRoute = function HomeRoute(stove) {
+var HomeRoute = function HomeRoute() {
   this.router = express.Router();
-  this.controller = new HomeController(stove);
+  this.controller = new HomeController();
 };
 
 HomeRoute.prototype.config = function config() {

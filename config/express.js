@@ -28,21 +28,21 @@ module.exports = function(app, io, config) {
   var Stove = require('../app/models/Stove');
   var stove = new Stove();
 
-  var routes = require(config.root + '/app/routes')(stove);
-  routes.forEach(function (route) {
-    app.use(route);
-  });
-
-  io.on('connection', function (socket) {
+  io.on('connection', function connectSocket(socket) {
     socket.emit('status', stove);
   });
 
-  stove.on('status', function algo(data) {
-    io.emit('status', data);
+  stove.on('status', function onStoveStatus(stove) {
+    io.emit('status', stove);
   });
 
-  stove.on('toggleOnOff', function algo(data) {
-    io.emit('toggleOnOff', data);
+  stove.on('toggleOnOff', function onStoveToggleOnOff(isOn) {
+    io.emit('toggleOnOff', isOn);
+  });
+
+  var routes = require(config.root + '/app/routes')(stove);
+  routes.forEach(function (route) {
+    app.use(route);
   });
 
   app.use(function (req, res, next) {
@@ -51,7 +51,7 @@ module.exports = function(app, io, config) {
     next(err);
   });
   
-  if(app.get('env') === 'development'){
+  if(app.get('env') === 'development') {
     app.use(function (err, req, res) {
       res.status(err.status || 500);
       res.render('error', {
@@ -70,5 +70,4 @@ module.exports = function(app, io, config) {
       title: 'error'
     });
   });
-
 };
