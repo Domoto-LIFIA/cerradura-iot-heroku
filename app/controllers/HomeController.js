@@ -1,14 +1,15 @@
 'use strict';
-var Article = require('../models/Article');
 
-var HomeController = function HomeController() {
+var HomeController = function HomeController(stove) {
+  this.stove = stove;
+  this.getIndex = this.getIndex.bind(this); 
 };
 
 HomeController.prototype.getIndex = function getIndex(req, res) {
   res.render('index', {
-    title: 'Generator-Express MVC',
-    articles: [new Article(), new Article()]
+    title: 'Control',
+    stove: this.stove
   });  
 };
 
-module.exports = new HomeController();
+module.exports = HomeController;

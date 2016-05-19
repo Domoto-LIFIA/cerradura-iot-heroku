@@ -8,8 +8,9 @@ gulp.task('develop', function () {
   livereload.listen();
   nodemon({
     script: 'app.js',
-    ext: 'js coffee swig',
-    stdout: false
+    ext: 'js coffee swig css',
+    stdout: false,
+    nodeArgs: ['--debug=5858']//['--debug-brk=5858'] 
   }).on('readable', function () {
     this.stdout.on('data', function (chunk) {
       if(/^Express server listening on port/.test(chunk)){

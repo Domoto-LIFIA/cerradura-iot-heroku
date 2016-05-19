@@ -1,9 +1,7 @@
 'use strict';
 
 var express = require('express');
-var glob = require('glob');
-
-var favicon = require('serve-favicon');
+//var favicon = require('serve-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
@@ -11,7 +9,7 @@ var compress = require('compression');
 var methodOverride = require('method-override');
 var swig = require('swig');
 
-module.exports = function(app, config) {
+module.exports = function(app, io, config) {
   var env = process.env.NODE_ENV || 'development';
   app.locals.ENV = env;
   app.locals.ENV_DEVELOPMENT = env == 'development';
@@ -35,9 +33,24 @@ module.exports = function(app, config) {
   app.use(express.static(config.root + '/public'));
   app.use(methodOverride());
 
-  var routes = glob.sync(config.root + '/app/routes/*.js');
+  var Stove = require('../app/models/Stove');
+  var stove = new Stove();
+
+  var routes = require(config.root + '/app/routes')(stove);
   routes.forEach(function (route) {
-    app.use(require(route));
+    app.use(route);
+  });
+
+  io.on('connection', function (socket) {
+    socket.emit('status', stove);
+  });
+
+  stove.on('status', function algo(data) {
+    io.emit('status', data);
+  });
+
+  stove.on('toggleOnOff', function algo(data) {
+    io.emit('toggleOnOff', data);
   });
 
   app.use(function (req, res, next) {
