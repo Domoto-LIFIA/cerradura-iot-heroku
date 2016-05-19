@@ -1,12 +1,9 @@
 'use strict';
 
 var express = require('express');
-//var favicon = require('serve-favicon');
 var logger = require('morgan');
-var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var compress = require('compression');
-var methodOverride = require('method-override');
 var swig = require('swig');
 
 module.exports = function(app, io, config) {
@@ -22,16 +19,11 @@ module.exports = function(app, io, config) {
   app.set('views', config.root + '/app/views');
   app.set('view engine', 'swig');
 
-  // app.use(favicon(config.root + '/public/img/favicon.ico'));
   app.use(logger('dev'));
   app.use(bodyParser.json());
-  app.use(bodyParser.urlencoded({
-    extended: true
-  }));
-  app.use(cookieParser());
+  app.use(bodyParser.urlencoded({ extended: true }));
   app.use(compress());
   app.use(express.static(config.root + '/public'));
-  app.use(methodOverride());
 
   var Stove = require('../app/models/Stove');
   var stove = new Stove();
@@ -60,7 +52,7 @@ module.exports = function(app, io, config) {
   });
   
   if(app.get('env') === 'development'){
-    app.use(function (err, req, res, next) {
+    app.use(function (err, req, res) {
       res.status(err.status || 500);
       res.render('error', {
         message: err.message,
@@ -70,13 +62,13 @@ module.exports = function(app, io, config) {
     });
   }
 
-  app.use(function (err, req, res, next) {
+  app.use(function (err, req, res) {
     res.status(err.status || 500);
-      res.render('error', {
-        message: err.message,
-        error: {},
-        title: 'error'
-      });
+    res.render('error', {
+      message: err.message,
+      error: {},
+      title: 'error'
+    });
   });
 
 };

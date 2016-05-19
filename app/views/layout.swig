@@ -7,6 +7,9 @@
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black">
 
+  <link id="favicon" rel="shortcut icon" href="/img/favicon.png" type="image/png" />
+  <link rel="apple-touch-icon" sizes="128x128" href="/img/favicon.png" type="image/png" />
+
   <link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
   <link type="text/css" rel="stylesheet" href="/css/materialize.min.css"  media="screen,projection"/>
   <link type="text/css" rel="stylesheet" href="/css/style.css"  media="screen,projection"/>
