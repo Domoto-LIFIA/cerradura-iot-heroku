@@ -1,0 +1,13 @@
+{
+  "globalDependencies": {
+    "express": "registry:dt/express#4.0.0+20160317120654",
+    "jquery": "registry:dt/jquery#1.10.0+20160417213236",
+    "node": "registry:env/node#4.0.0+20160507210304",
+    "socket.io": "registry:dt/socket.io#1.4.4+20160317120654",
+    "socket.io-client": "registry:dt/socket.io-client#1.4.4+20160317120654",
+    "swig": "registry:dt/swig#0.0.0+20160316155526"
+  },
+  "dependencies": {
+    "moment": "registry:npm/moment#2.10.5+20160211003958"
+  }
+}
