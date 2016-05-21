@@ -59,9 +59,12 @@
 {% endblock %}
 
 {% block js %}
+<!-- build:js /js/app.js -->
 <script type="text/javascript" src="/components/socket.io-client/socket.io.js"></script>
 <script type="text/javascript" src="/js/StoveClient.js"></script>
 <script type="text/javascript" src="/js/Index.js"></script>
+<!-- endbuild -->
+
 <script>
   new Index();
 </script>
