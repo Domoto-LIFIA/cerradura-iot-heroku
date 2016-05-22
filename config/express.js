@@ -1,29 +1,20 @@
 'use strict';
 
-var express = require('express');
 var logger = require('morgan');
 var bodyParser = require('body-parser');
 var compress = require('compression');
-var swig = require('swig');
 
 module.exports = function(app, io, config) {
-  var env = process.env.NODE_ENV || 'development';
-  app.locals.ENV = env;
-  app.locals.ENV_DEVELOPMENT = env == 'development';
-  
-  app.engine('swig', swig.renderFile);
-  if(env == 'development'){
-    app.set('view cache', false);
-    swig.setDefaults({ cache: false });
-  }
-  app.set('views', config.root + '/app/views');
-  app.set('view engine', 'swig');
+  config.configureLocalEnv(app);
+  config.configureViewEngine(app);
 
+  //TODO: Mirar porque tiene un dev esto.
   app.use(logger('dev'));
   app.use(bodyParser.json());
   app.use(bodyParser.urlencoded({ extended: true }));
   app.use(compress());
-  app.use(express.static(config.root + '/public'));
+  
+  config.staticFiles(app);
 
   var Stove = require('../app/models/Stove');
   var stove = new Stove();
@@ -51,7 +42,7 @@ module.exports = function(app, io, config) {
     next(err);
   });
   
-  if(app.get('env') === 'development') {
+  if(config.isDevelopment) {
     app.use(function (err, req, res) {
       res.status(err.status || 500);
       res.render('error', {

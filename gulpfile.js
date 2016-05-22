@@ -9,11 +9,20 @@ gulp.task('install', ['install:ts'], function() {
     .pipe(plugins.install());
 });
 
+gulp.task('prod', ['build'], function () {
+  plugins.env({ vars: { NODE_ENV: 'production' } });
+  plugins.nodemon({
+    script: 'app.js',
+    ext: 'js',
+    nodeArgs: ['--debug=5858'] 
+  });
+});
+
 gulp.task('develop', function () {
   plugins.livereload.listen();
   plugins.nodemon({
     script: 'app.js',
-    ext: 'js coffee swig css',
+    ext: 'js swig css',
     stdout: false,
     nodeArgs: ['--debug=5858']//['--debug-brk=5858'] 
   }).on('readable', function () {
@@ -67,6 +76,4 @@ gulp.task('build', ['copy'], function () {
     .pipe(gulp.dest('dist'));  
 });
 
-gulp.task('default', [
-  'develop'
-]);
+gulp.task('default', ['develop']);

@@ -5,7 +5,7 @@ var HomeController = function HomeController() {
 };
 
 HomeController.prototype.getIndex = function getIndex(req, res) {
-  res.render('index', { title: 'Control' });  
+  res.render('index', { title: 'Control' });
 };
 
 module.exports = HomeController;

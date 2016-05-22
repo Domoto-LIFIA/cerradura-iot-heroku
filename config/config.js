@@ -1,33 +1,45 @@
 'use strict';
 
 var path = require('path'),
+  express = require('express'),
+  swig = require('swig'),
   rootPath = path.normalize(__dirname + '/..'),
   env = process.env.NODE_ENV || 'development';
 
-var config = {
-  development: {
-    root: rootPath,
-    app: {
-      name: 'domoto-estufa'
-    },
-    port: process.env.PORT || 3000
-  },
-
-  test: {
-    root: rootPath,
-    app: {
-      name: 'domoto-estufa'
-    },
-    port: process.env.PORT || 3000
-  },
-
-  production: {
-    root: rootPath,
-    app: {
-      name: 'domoto-estufa'
-    },
-    port: process.env.PORT || 3000
-  }
+var Config = function Config() {
+  this.env = env;
+  this.root = rootPath;
+  this.name = 'domoto-estufa';
+  this.port = process.env.PORT || 3000;
+  this.isDevelopment = env == 'development';
 };
 
-module.exports = config[env];
+Config.prototype.configureLocalEnv = function configureLocalEnv(app) {
+  app.locals.ENV = this.env;
+  app.locals.ENV_DEVELOPMENT = this.isDevelopment;  
+};
+
+Config.prototype.configureViewEngine = function configureViewEngine(app) {
+  app.engine('swig', swig.renderFile);
+  app.set('view engine', 'swig');  
+
+  if (!this.isDevelopment)
+    return app.set('views', rootPath + '/dist/views');
+  
+  app.set('view cache', false);
+  swig.setDefaults({ cache: false });
+  app.set('views', rootPath + '/app/views');
+};
+
+Config.prototype.staticFiles = function staticFiles(app) {
+  if (this.isDevelopment)
+    return app.use(express.static(this.root + '/public')); 
+  
+  app.use('/css', express.static(this.root + '/dist/css'));
+  app.use('/font', express.static(this.root + '/dist/font'));
+  app.use('/fonts', express.static(this.root + '/dist/fonts'));
+  app.use('/img', express.static(this.root + '/dist/img'));
+  app.use('/js', express.static(this.root + '/dist/js'));
+};
+
+module.exports = new Config();
