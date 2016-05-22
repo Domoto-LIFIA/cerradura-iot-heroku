@@ -1,14 +1,12 @@
 'use strict';
 
-var path = require('path'),
-  express = require('express'),
+var express = require('express'),
   swig = require('swig'),
-  rootPath = path.normalize(__dirname + '/..'),
   env = process.env.NODE_ENV || 'development';
 
 var Config = function Config() {
   this.env = env;
-  this.root = rootPath;
+  this.root = __dirname;
   this.name = 'domoto-estufa';
   this.port = process.env.PORT || 3000;
   this.isDevelopment = env == 'development';
@@ -24,11 +22,11 @@ Config.prototype.configureViewEngine = function configureViewEngine(app) {
   app.set('view engine', 'swig');  
 
   if (!this.isDevelopment)
-    return app.set('views', rootPath + '/dist/views');
+    return app.set('views', __dirname + '/dist/views');
   
   app.set('view cache', false);
   swig.setDefaults({ cache: false });
-  app.set('views', rootPath + '/app/views');
+  app.set('views', __dirname + '/app/views');
 };
 
 Config.prototype.staticFiles = function staticFiles(app) {
