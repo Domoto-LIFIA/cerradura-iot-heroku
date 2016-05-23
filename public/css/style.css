@@ -17,3 +17,14 @@ footer.page-footer {
   margin: 0;
   padding-top: 0;
 }
+
+.nav-wrapper .valign-wrapper {
+    height: 100%;
+    vertical-align: middle;
+    display: inline-block;
+}
+
+.nav-wrapper .valign {
+    vertical-align: middle;
+    display: inline-block;
+}

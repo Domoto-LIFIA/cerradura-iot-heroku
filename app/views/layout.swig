@@ -19,15 +19,20 @@
 <body>
   <nav class="blue darken-2" role="navigation">
     <div class="nav-wrapper container">
-      <a href="#" class="brand-logo">Domoto Estufa</a>
+      <a href="#" class="brand-logo center">Domoto Estufa</a>
+      <ul class="right">
+        <li><a href="https://gitlab.com/jloboprs/domoto-estufa" class="valign-wrapper">
+            <img src="/img/git.png" title="Codigo fuente" alt="Codigo fuente" class="valign">
+        </li></a>
+      </ul>
     </div>
   </nav>
 
   {% block content %}{% endblock %}
 
-  <footer class="page-footer blue darken-2">
+  <footer class="page-footer white">
     <div class="footer-copyright">
-      <div class="container">
+      <div class="container black-text">
       Echo por <a class="teal-text " href="https://gitlab.com/u/jloboprs"><b>Joselo</b></a>
       </div>
     </div>
