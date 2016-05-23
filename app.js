@@ -1,3 +1,5 @@
+#! /usr/bin/env node
+
 'use strict';
 var logger = require('morgan');
 var bodyParser = require('body-parser');
