@@ -19,9 +19,9 @@
 <body>
   <nav class="blue darken-2" role="navigation">
     <div class="nav-wrapper container">
-      <a href="#" class="brand-logo center">Domoto Estufa</a>
+      <a href="#" class="brand-logo center">Mia Cucina</a>
       <ul class="right">
-        <li><a href="https://gitlab.com/jloboprs/domoto-estufa" class="valign-wrapper">
+        <li><a href="https://gitlab.com/jloboprs/mia-cucina" class="valign-wrapper">
             <img src="/img/git.png" title="Codigo fuente" alt="Codigo fuente" class="valign">
         </li></a>
       </ul>

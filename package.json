@@ -1,5 +1,5 @@
 {
-  "name": "domoto-estufa",
+  "name": "mia-cucina",
   "version": "0.0.1",
   "description": "",
   "main": "app.js",
@@ -8,14 +8,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+ssh://git@gitlab.com/jloboprs/domoto-estufa.git"
+    "url": "git+ssh://git@gitlab.com/jloboprs/mia-cucina.git"
   },
   "author": "José Lobo",
   "license": "ISC",
   "bugs": {
-    "url": "https://gitlab.com/jloboprs/domoto-estufa/issues"
+    "url": "https://gitlab.com/jloboprs/mia-cucina/issues"
   },
-  "homepage": "https://gitlab.com/jloboprs/domoto-estufa#README",
+  "homepage": "https://gitlab.com/jloboprs/mia-cucina#README",
   "dependencies": {
     "body-parser": "^1.13.3",
     "compression": "^1.5.2",

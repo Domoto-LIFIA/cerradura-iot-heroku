@@ -7,7 +7,7 @@ var express = require('express'),
 var Config = function Config() {
   this.env = env;
   this.root = __dirname;
-  this.name = 'domoto-estufa';
+  this.name = 'mia-cucina';
   this.port = process.env.PORT || 3000;
   this.isDevelopment = env == 'development';
 };
