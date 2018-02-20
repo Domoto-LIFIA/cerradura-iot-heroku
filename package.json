@@ -1,5 +1,5 @@
 {
-  "name": "mia-cucina",
+  "name": "cerradura-iot-heroku",
   "version": "0.0.1",
   "description": "",
   "main": "app.js",
@@ -8,7 +8,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+ssh://git@gitlab.com/jloboprs/mia-cucina.git"
+    "url": "git+ssh://git@github.com:francofico/cerradura-iot-heroku.git"
   },
   "author": "José Lobo",
   "license": "ISC",

@@ -8,7 +8,7 @@ var express = require('express');
 var app = express();
 var server = require('http').createServer(app);
 var io = require('socket.io')(server);
-var Stove = require('./app/models/Stove');
+var Lock = require('./app/models/Lock');
 var config = require('./config');
 
 config.configureLocalEnv(app);
@@ -21,21 +21,21 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(compress());
 
 config.staticFiles(app);
-var stove = new Stove();
+var lock = new Lock();
 
 io.on('connection', function connectSocket(socket) {
-  socket.emit('status', stove);
+  socket.emit('status', lock);
 });
 
-stove.on('status', function onStoveStatus(stove) {
-  io.emit('status', stove);
+lock.on('status', function onLockStatus(lock) {
+  io.emit('status', lock);
 });
 
-stove.on('toggleOnOff', function onStoveToggleOnOff(isOn) {
-  io.emit('toggleOnOff', isOn);
+lock.on('toggleOpen', function onLockToggleOpen(isOpen) {
+  io.emit('toggleOpen', isOpen);
 });
 
-var routes = require(config.root + '/app/routes')(stove);
+var routes = require(config.root + '/app/routes')(lock);
 routes.forEach(function (route) {
   app.use(route);
 });
