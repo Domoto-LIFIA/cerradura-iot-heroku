@@ -24,7 +24,7 @@ Index.prototype.getModel = function getModel() {
     return data;  
   }, {});
   
-  formData.minutes = parseInt(formData.minutes, 10);
+//  formData.minutes = parseInt(formData.minutes, 10);
   
   return formData;
 };
