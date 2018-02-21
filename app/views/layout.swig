@@ -19,9 +19,9 @@
 <body>
   <nav class="blue darken-2" role="navigation">
     <div class="nav-wrapper container">
-      <a href="#" class="brand-logo center">Mia Cucina</a>
+      <a href="#" class="brand-logo center">Cerradura IoT</a>
       <ul class="right">
-        <li><a href="https://gitlab.com/jloboprs/mia-cucina" class="valign-wrapper">
+        <li><a href="https://github.com/francofico/cerradura-iot-heroku" class="valign-wrapper">
             <img src="/img/git.png" title="Codigo fuente" alt="Codigo fuente" class="valign">
         </li></a>
       </ul>
@@ -33,7 +33,6 @@
   <footer class="page-footer white">
     <div class="footer-copyright">
       <div class="container black-text">
-      Echo por <a class="teal-text " href="https://gitlab.com/u/jloboprs"><b>Joselo</b></a>
       </div>
     </div>
   </footer>

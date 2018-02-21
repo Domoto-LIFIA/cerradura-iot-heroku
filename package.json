@@ -10,12 +10,12 @@
     "type": "git",
     "url": "git+ssh://git@github.com:francofico/cerradura-iot-heroku.git"
   },
-  "author": "José Lobo",
+  "author": "Franco Fico",
   "license": "ISC",
   "bugs": {
-    "url": "https://gitlab.com/jloboprs/mia-cucina/issues"
+    "url": "https://github.com/francofico/cerradura-iot-heroku/issues"
   },
-  "homepage": "https://gitlab.com/jloboprs/mia-cucina#README",
+  "homepage": "https://github.com/francofico/cerradura-iot-heroku",
   "dependencies": {
     "body-parser": "^1.13.3",
     "compression": "^1.5.2",

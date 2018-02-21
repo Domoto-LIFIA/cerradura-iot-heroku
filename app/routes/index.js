@@ -1,6 +1,6 @@
 var HomeRoute = require('./HomeRoute');
-var StoveRoute = require('./api/StoveRoute');
+var LockRoute = require('./api/LockRoute');
 
-module.exports = function(stove) {
-  return [ (new HomeRoute()).config(), (new StoveRoute(stove)).config() ]; 
+module.exports = function(lock) {
+  return [ (new HomeRoute()).config(), (new LockRoute(lock)).config() ]; 
 };
