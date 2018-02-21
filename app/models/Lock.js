@@ -30,7 +30,7 @@ Lock.prototype.close = function close() {
 };
 
 Lock.prototype.getStatus = function getStatus(){
-	return this.isOpen || undefined;
+	return this.isOpen;
 }
 
 Lock.prototype._sendStatus = function _sendStatus() {
