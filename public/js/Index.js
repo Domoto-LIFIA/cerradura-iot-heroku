@@ -40,7 +40,7 @@ Index.prototype.alert = function alert (message) {
   Materialize.toast(message, 3000, 'rounded');
 };
 
-Index.prototype._showOpen = function _showOpen(isOn) {
+Index.prototype._showOpen = function _showOpen(isOpen) {
   this.alert(isOpen ? 'La puerta ha sido abierta' : 'La puerta ha sido cerrada');
 
 };

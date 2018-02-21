@@ -1,6 +1,5 @@
 'use strict';
 
-var moment = require('moment');
 var util = require('util');
 var events = require('events');
 
