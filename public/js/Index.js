@@ -13,7 +13,7 @@ var Index = function() {
   this._showOpen = this._showOpen.bind(this);
   this._changeStatus = this._changeStatus.bind(this);
   
-  this.$encender.click(this.toggleOpen);
+  this.$abrir.click(this.toggleOpen);
   this.socket.on('status', this._changeStatus);
   this.socket.on('toggleOpen', this._showOpen);
 };
@@ -42,8 +42,8 @@ Index.prototype.alert = function alert (message) {
 
 Index.prototype._showOpen = function _showOpen(isOn) {
   this.alert(isOpen ? 'La puerta ha sido abierta' : 'La puerta ha sido cerrada');
-};
 
+};
 Index.prototype._changeStatus = function _changeStatus(response) {
   this.$abrir.prop('checked', response.isOpen);
   
@@ -51,7 +51,7 @@ Index.prototype._changeStatus = function _changeStatus(response) {
     this.$textEstado.text('Abierto');    
   }
   else {
-    this.$textEstado.text('Apagado');
+    this.$textEstado.text('Cerrado');
   }
 };
 
