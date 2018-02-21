@@ -1,11 +1,10 @@
 var LockClient = function LockClient() {
 };
 
-LockClient.prototype.open = function open(data) {
+LockClient.prototype.open = function open() {
   return $.ajax({
     url: '/api/open',
     method: 'POST',
-    data: data,
     dataType: 'json'
   });
 };
