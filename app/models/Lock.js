@@ -16,7 +16,7 @@ var Lock = function Lock () {
 
 util.inherits(Lock, events);
 
-Lock.prototype.open = function open(params) {
+Lock.prototype.open = function open() {
   this.isOpen = true;
   
   this._sendStatus();

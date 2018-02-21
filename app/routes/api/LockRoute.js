@@ -3,9 +3,9 @@
 var express = require('express');
 var LockController = require('../../controllers/api/LockController');
 
-var LockRoute = function LockRoute(stove) {
+var LockRoute = function LockRoute(lock) {
   this.router = express.Router();
-  this.controller = new LockController(stove);
+  this.controller = new LockController(lock);
 };
 
 LockRoute.prototype.config = function config() {

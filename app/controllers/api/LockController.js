@@ -10,7 +10,7 @@ var LockController = function LockController(lock) {
 LockController.prototype.open = function open(req, res) {
   var params = req.body || { };
   
-  this.lock.open(params);
+  this.lock.open();
   res.json(this.lock);
 };
 
