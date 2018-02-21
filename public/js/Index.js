@@ -2,29 +2,20 @@
 
 var Index = function() {
   this.socket = io();
-  this.stove = new StoveClient();
+  this.lock = new LockClient();
   
   this.$form = $('#form');
-  this.$encender = $('#encender');
+  this.$abrir = $('#abrir');
   
-  this.$textTemperature = $('#textTemperature');
-  this.$textMinute = $('#textMinute');
   this.$textEstado = $('#textEstado');
   
-  this.$tiempo = $('#tiempo');
-  this.$temperature = {
-    high: $('#high'),
-    medium: $('#medium'),
-    low: $('#low')
-  };
-  
-  this.toggleOnOff = this.toggleOnOff.bind(this);
-  this._showOnOff = this._showOnOff.bind(this);
+  this.toggleOpen = this.toggleOpen.bind(this);
+  this._showOpen = this._showOpen.bind(this);
   this._changeStatus = this._changeStatus.bind(this);
   
-  this.$encender.click(this.toggleOnOff);
+  this.$encender.click(this.toggleOpen);
   this.socket.on('status', this._changeStatus);
-  this.socket.on('toggleOnOff', this._showOnOff);
+  this.socket.on('toggleOpen', this._showOpen);
 };
 
 Index.prototype.getModel = function getModel() {
@@ -38,46 +29,29 @@ Index.prototype.getModel = function getModel() {
   return formData;
 };
 
-Index.prototype.toggleOnOff = function turnOn() {
-  if (this.$encender.prop('checked'))
-    this.stove.turnOn(this.getModel());
+Index.prototype.toggleOpen = function open() {
+  if (this.$abrir.prop('checked'))
+    this.lock.open(this.getModel());
   else
-    this.stove.turnOff();
+    this.lock.close();
 };
 
 Index.prototype.alert = function alert (message) {
   Materialize.toast(message, 3000, 'rounded');
 };
 
-Index.prototype._showOnOff = function _showOnOff(isOn) {
-  this.alert(isOn ? 'La estufa ha sido encendida' : 'La estufa ha sido apagada');
+Index.prototype._showOpen = function _showOpen(isOn) {
+  this.alert(isOpen ? 'La puerta ha sido abierta' : 'La puerta ha sido cerrada');
 };
 
 Index.prototype._changeStatus = function _changeStatus(response) {
-  this.$encender.prop('checked', response.isOn);
+  this.$abrir.prop('checked', response.isOpen);
   
-  if (response.isOn) {
-    this.$textEstado.text('Encendido');    
-    this.$textTemperature.text(this._getTemperatureLabel(response.temperature));
-    
-    if (response.minutes)
-      this.$textMinute.text(response.minutes + ' min');
-    else
-       this.$textMinute.text(response.seconds + ' s');
+  if (response.isOpen) {
+    this.$textEstado.text('Abierto');    
   }
   else {
     this.$textEstado.text('Apagado');
-    this.$textTemperature.text('');
-    this.$textMinute.text('');
   }
 };
 
-Index.prototype._getTemperatureLabel = function _getTemperatureLabel (temperature) {
-  switch (temperature) {
-  case 'high': return 'Alta';
-  case 'medium': return 'Media';
-  case 'low': return 'Baja';
-  }
-  
-  return 'Ninguna';    
-};
