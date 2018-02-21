@@ -39,13 +39,9 @@
 {% endblock %}
 
 {% block js %}
-<!-- build:js /js/app.js -->
-<script type="text/javascript" src="/components/socket.io-client/socket.io.js"></script>
-<script type="text/javascript" src="/js/LockClient.js"></script>
-<script type="text/javascript" src="/js/Index.js"></script>
-<!-- endbuild -->
-
+<script src="/js/app-6f96440177.js"></script>
 <script>
   new Index();
 </script>
 {% endblock %}
+
